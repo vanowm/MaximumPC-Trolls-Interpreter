@@ -13,6 +13,7 @@
 var list = cookieGet("trolls", "RUSENSITIVESWEETNESS"),
 		trollHide = Number(cookieGet("trollHide")) ? 1 : 0,
 		trollSrc = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAAsSAAALEgHS3X78AAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M1cbXjNgAAABZ0RVh0Q3JlYXRpb24gVGltZQAxMi8yOC8xMZSAjI8AAAA/UExURf///wAAAAEBAQICAgMDAwQEBAUFBQYGBgcHBwgICAkJCQoKCgsLCw0NDQ8PDxAQEBISEhMTExYWFvr6+v////L9RbYAAAABdFJOUwBA5thmAAAAZklEQVQYGY3BWw6CMABFwXtQKLZafJz9r1WaaPgycSb5wwys8KT1DFcPZIeHlgQBZ5jcbUnTByq4oDXpopMDd88JWlCZEEtSKUsHRCUJr1W8iVqTIBeWAirZ4Rdk6A6cWPMBHfLbGzqjB8v8i7F/AAAAAElFTkSuQmCC";
+
 list = list.split("+");
 if (list[0] === "")
 	list.splice(0,1);
@@ -71,10 +72,10 @@ function censor(a, b, c, d, e)
 }
 function toggleTroll(comment, f)
 {
-	f = typeof(f) == "undefined" ? 2 : f;
 	//f = 0: orig
 	//f = 1: troll
 	//f = 2: toggle
+	f = typeof(f) == "undefined" ? 2 : f;
 	if (f == 1 || (f == 2 && comment.innerHTML == comment.origHTML))
 	{
 		if (!("trollHTML" in comment))
@@ -127,23 +128,19 @@ var root = document.getElementById("site-menu").getElementsByTagName("ul")[0],
 		style = document.createElement("style"),
 		li = root.lastChild.cloneNode(true),
 		a = li.getElementsByTagName("a")[0],
-		listBox = document.createElement("div"),
 		div = li.getElementsByTagName("div")[0],
-		divSettings = div.getElementsByTagName("div")[0],
-		divList = div.getElementsByTagName("div")[1];
+		divSettings = div.getElementsByTagName("div")[1];
 
 style.innerHTML = '.trollComment{cursor:pointer;opacity: 0.4;transform:scaleX(-1)}a[troll="false"]+.troll{opacity: 0.1;transform: scaleX(-1);}.troll{cursor:pointer;margin-left:0.5em;}.trollMenuImg{vertical-align: top;}.trollBox{height: auto; line-height: 1.3em;}';
 document.getElementsByTagName("head")[0].appendChild(style);
+
+div.getElementsByTagName("div")[0].innerHTML = "";
 divSettings.parentNode.className = "menu-pulldown nosubpage";
-listBox.className = "trollBox view view-featured-content view-id-featured_content view-display-id-block_7 view-dom-id-1";
 root.lastChild.className = root.lastChild.className.replace(" last", "");
 a.href = "javascript:return void(0);";
 a.innerHTML = '<img src="' + trollSrc + '" class="trollMenuImg">';
 divSettings.innerHTML = "";
-divSettings = divList;
-divList.innerHTML = "";
 div.style.width = "auto";
-divList.appendChild(listBox);
 root.appendChild(li);
 divSettings.appendChild(checkbox("trollHide", "Hide troll's posts", (trollHide), function(e)
 {
