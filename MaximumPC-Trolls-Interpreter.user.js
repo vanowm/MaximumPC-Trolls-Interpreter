@@ -1,9 +1,9 @@
 ﻿// ==UserScript==
 // @id          MaximumPC-Trolls-Interpreter
-// @name        MaximumPC: Trolls Interpreter
+// @name        MaximumPC: Trolls Interpreter / Remover
 // @namespace   V@no
 // @author      V@no
-// @description Translate trolls comments to meaningfull(less) sentences
+// @description Translate troll's comments into blah sentences or simply hide them.
 // @include     http://maximumpc.com/*
 // @include     http://www.maximumpc.com/*
 // @version     1.0
