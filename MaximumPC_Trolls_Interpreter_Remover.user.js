@@ -125,7 +125,8 @@ function checkbox(id, text, checked, callback, p)
 	input.addEventListener("change", callback, p);
 	return span;
 }
-var root = document.getElementById("site-menu").getElementsByTagName("ul")[0],
+//var root = document.getElementById("site-menu").getElementsByTagName("ul")[0],
+var root = document.getElementsByClassName("nav-links")[0].getElementsByTagName("ul")[0],
 		style = document.createElement("style"),
 		li = root.lastChild.cloneNode(true),
 		a = li.getElementsByTagName("a")[0],
